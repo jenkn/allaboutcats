@@ -28,7 +28,6 @@ factbutton.addEventListener('click', addCatFact)
 //Picture
 function addCatPicture() {
 
-
   fetch('https://api.thecatapi.com/v1/images/search')
     .then(response => response.json())
     .then(data => {
@@ -68,8 +67,6 @@ function formhandler(evt) {
     let inputValue = input.value;
 
     console.log(inputValue)
-
-
 
     if (inputValue === "YES") {
         console.log(true)

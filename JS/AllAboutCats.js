@@ -1,76 +1,90 @@
-let formulare = document.getElementById('form');
+let input = document.getElementById('likeCatsValid');
 let factbutton = document.getElementById('buttonFact')
-let catFact = document.getElementById('catFact')
+let pictureButton = document.getElementById('pictureBtn')
 
 
 
 
-fetch('https://catfact.ninja/fact?max_length=140')
-    .then(res => {
-        console.log(res.status);
-        return res.json();
-    })
-    .then(json => {
-        console.log("json", json);//asynchronous
-        addCatFact(json.fact);
-    })
-    .catch(err => console.error(err));
-
-function addCatFact(facts) {
-    let catFact = document.getElementById('catFact')
-    let content = "";
-
-    for (const theFact of facts) {
-        content += theFact.fact;
-    }
-    catFact.innerHTML = content;
-
-}
-
-factbutton.addEventListener('click',addCatFact)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function formhandler(evt){
-
-
-    const forms = document.querySelectorAll('.needs-validation');
-
-    let input = document.getElementById('likeCatsValid')
-    let inputValue = input.value;
-    let formulare = document.getElementById('form');
-
-    if (inputValue == "YES"){
-
-        Array.from(forms).forEach(form => {
-            form.addEventListener('keypress', event => {
-                if (!form.checkValidity()){
-                    evt.preventDefault();
-                    evt.stopPropagation()
-                }
-                form.classList.remove('is-invalid');
-                form.classList.add('was-validated');
-            }, false)
+//Fact
+function addCatFact() {
+    console.log("click")
+    fetch('https://catfact.ninja/fact')
+        .then(response => response.json())
+        .then(data => {
+            const fact = data.fact;
+            const factElement = document.getElementById('catFact');
+            factElement.innerText = fact;
+            console.log("fact", fact);
+            console.log("data", data)
         })
 
+        .catch(error => {
+            console.log('Error:', error);
+        });
+}
+
+factbutton.addEventListener('click', addCatFact)
+
+//Picture
+function addCatPicture() {
+
+
+  fetch('https://api.thecatapi.com/v1/images/search')
+    .then(response => response.json())
+    .then(data => {
+      const imageUrl = data[0].url;
+      const cardBody = document.getElementById('randomPicInput');
+      cardBody.innerHTML = "";
+      // Remove any existing image element
+      const existingImage = cardBody.querySelector('img');
+      if (existingImage) {
+        existingImage.remove();
+      }
+
+      // Create a new image element and set the source
+      const image = document.createElement('img');
+      image.src = imageUrl;
+      image.style.width = '500px';
+      image.style.height = '450px'
+       image.style.display = 'block';
+      image.style.margin = 'auto';
+
+      // Append the image to the card body
+      cardBody.appendChild(image);
+    })
+    .catch(error => {
+      console.log('Error:', error);
+    });
+
+}
+pictureButton.addEventListener('click',addCatPicture)
+
+
+
+//validation
+function formhandler(evt) {
+    evt.preventDefault();
+    let errorImage = document.getElementById('errorImage');
+    let inputValue = input.value;
+
+    console.log(inputValue)
+
+
+
+    if (inputValue === "YES") {
+        console.log(true)
+        errorImage.style.display = 'none';
+        input.classList.remove('is-invalid');
+        input.classList.add('was-validated');
+    } else {
+        input.classList.add('is-invalid');
+        input.classList.remove('was-validated');
+        errorImage.style.display = 'block';
+        errorImage.style.position = 'absolute';
+        errorImage.style.zIndex = '9999';
+
     }
 
 }
-formulare.addEventListener('keypress',formhandler)
+
+document.getElementById('form').addEventListener('submit', formhandler);

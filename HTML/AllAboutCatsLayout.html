@@ -10,14 +10,15 @@
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../JS/test.js" defer></script>
+    <script src="../JS/SearchBreeds.js" defer></script>
     <script src="../JS/AllAboutCats.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 
 </head>
 
 <body>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
 
 <!-- Überschrift-->
 <nav class="navbar navbar-expand-lg mb-4" style="background-color: lightyellow">
@@ -32,30 +33,37 @@
 
 <!-- Validation-->
 <div class="container" style="background-color: lightyellow; border: 1px solid white; border-radius: 10px;">
-    <form class="row justify-content-center mb-4 mt-4 ">
-        <div class="col-auto">
-            <label class="col-form-label">Do you like Cats?</label>
-        </div>
+
+    <form class="d-flex needs-validation" id="form" novalidate>
 
 
-        <form class="d-flex needs-validation" id="form" novalidate>
-            <div class="col-auto form-check">
-                <input type="text" class="form-control is-invalid" id="likeCatsValid" required>
-
-                <div class="invalid-feedback">
-                    Choose your answer wisley.
-                </div>
-
+        <div class="row justify-content-center mb-1 mt-1 ">
+            <div class=" col-auto">
+                <label class="col-form-label">Do you like Cats?</label>
             </div>
-        </form>
+            <div class="col-auto">
+                <div class="form-check">
+                    <input type="text" class="form-control is-invalid" id="likeCatsValid" required>
+                    <div class="invalid-feedback">
+                        Choose your answer wisley.
+                    </div>
+
+                </div>
+            </div>
+            <!--            <div class="col-auto">-->
+            <!--            </div>-->
+
+        </div>
     </form>
 </div>
 
+<!--Val. fails image-->
+<img src="../pictures/no access.jpg" id="errorImage"
+     style="display: block; position: absolute; z-index: 9999; width: 70%; height: 100%; margin-left: 300px"/>
 
 <!-- unterer bereich-->
-
 <div class="container-fluid mt-4 mb-4">
-    <form class="row g-5 justify-content-center">
+    <div class="row g-5 justify-content-center">
 
         <!-- Search a Breed-->
         <div class="col-5 justify-content-center">
@@ -117,15 +125,11 @@
                                 <div style="margin-left: 30px"><i>{{selected_breed.temperament}}</i></div>
                             </div>
 
-                            <button class="btn mt-3 mb-3 " type="submit" href="#" target="_blank" flat color="orange"
-                                    id="wikibtn">
-                                Wikipedia
-                            </button>
-
-                            <!--
                             <v-card-actions>
-                                <v-btn :href="selected_breed.wikipedia_url" target="_blank" flat color="orange">Wikipedia</v-btn>
-                            </v-card-actions>-->
+                                <v-btn :href="selected_breed.wikipedia_url" target="_blank" flat color="orange">
+                                    Wikipedia
+                                </v-btn>
+                            </v-card-actions>
 
                         </div>
                     </div>
@@ -140,28 +144,29 @@
 
 
             <!-- Random Cat Facts-->
-            <div class="card" style="min-height: 50%;  border: 5px solid darkorange">
+            <div class="card" style="min-height: 30%;  border: 5px solid darkorange">
                 <div class="card-header" style="background-color:lightyellow;">
                     Random Cat fact
-                    <button class="btn" type="submit" id="buttonFact">
+                    <button class="btn" type="click" id="buttonFact">
                         <img src="../pictures/catface.png" alt="" width="45" height="40" class="align-text-top">
                     </button>
                 </div>
                 <div class="card-body " id="catFact">
+                    Click the Cat
                 </div>
 
             </div>
 
             <!-- Random Cat Picture-->
-            <div class="card mt-3" style="min-height: 50%;  border: 5px solid darkorange">
+            <div class="card mt-3" style="min-height: 70%; border: 5px solid darkorange">
                 <div class="card-header" style="background-color:lightyellow;">
                     Random Cat picture
-                    <button class="btn" type="submit">
+                    <button class="btn" type="submit" id="pictureBtn">
                         <img src="../pictures/catface.png" alt="" width="45" height="40" class="align-text-top">
                     </button>
                 </div>
-                <div class="card-body ">
-
+                <div class="card-body " id="randomPicInput">
+                    Click the Cat
                 </div>
             </div>
 
@@ -170,7 +175,7 @@
         <!-- Help Cats in Need-->
         <div class="col-10 justify-content-center">
             <div class="card mt-2 " style="min-height: 50%;  border: 5px solid darkorange">
-                <div class="card-header" style="background-color:lightyellow;">
+                <div class="card-header" style="background-color:lightyellow; font-size: larger">
                     Help Cats in Need
 
                     <img src="../pictures/catface.png" height="40" width="45"/></div>
@@ -178,22 +183,27 @@
 
                     <div class="col mt-3 w-auto">
 
-                        <ul class="list-group fs-6 fw-bold" >
-                            <li class="list-group-item list-group-item-action" href="https://www.strayz.de/">
+                        <ul class="list-group fs-6 ">
+                            <a class="list-group-item list-group-item-action" href="https://www.strayz.de/"
+                               target="_blank">
                                 Feed your Cat AND help strays
-                            </li>
-                            <li class="list-group-item" >
+                            </a>
+                             <a class="list-group-item list-group-item-action" href="http://www.tierschutz-kaernten.at/wie-kann-ich-helfen/"
+                               target="_blank">
+                                How can you help the animal welfare in carinthia!
+                            </a>
+                             <a class="list-group-item list-group-item-action" href="https://www.katzplatz.at/tiertafel-kaernten/helfer-werden/"
+                               target="_blank">
+                                A voluntary and honorary group of people from all regions in Carinthia who wanted to help animal welfare organizations
+                                 and to find a home for cats that are difficult to adopt.
+                            </a>
 
-                            </li>
-                            <li class="list-group-item" >
-
-                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 
 

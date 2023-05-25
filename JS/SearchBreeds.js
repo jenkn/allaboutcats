@@ -28,7 +28,7 @@ new Vue({
         async getBreeds()
         {
             try{
-                axios.defaults.headers.common['x-api-key'] = "live_M9jXUdxdpEod5DlSEXxW0a8rBh7AKlCJ5TcLjnsmNH1A0QARWqhItW42kZsvFBXl" // Replace this with your API Key, as it's set to defaults it will be used from now onwards
+                axios.defaults.headers.common['x-api-key'] = "live_M9jXUdxdpEod5DlSEXxW0a8rBh7AKlCJ5TcLjnsmNH1A0QARWqhItW42kZsvFBXl"
 
                 let response = await axios.get('https://api.thecatapi.com/v1/breeds/' )
                 this.breeds = response.data;

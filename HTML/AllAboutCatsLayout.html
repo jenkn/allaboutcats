@@ -34,13 +34,16 @@
 <!-- Überschrift-->
 <nav class="navbar text-center mb-5 rounded-3 ms-3 me-3 shadow mt-3" style="background-color: #FDEBD0; border-bottom: 5px solid #F0B27A">
     <div class="container justify-content-center">
-        <a class="navbar-brand fw-bold" style="color: #DC7633 ; font-size: 65px;font-style: italic" href="#">
-            It`s all about CATS
-            <img src="../pictures/catface.png" height="60px" width="65px"/>
-        </a>
-        <div class="fw-lighter"> by Jennifer Kreiner</div>
+        <div class="navbar-brand" style="display: flex; flex-direction: column; align-items: center;">
+            <h1 style="color: #DC7633; font-size: 65px; font-style: italic; margin: 0;">
+                It's all about CATS
+                <img src="../pictures/catface.png" height="60px" width="65px" style="vertical-align: middle; margin-left: 10px;">
+            </h1>
+            <div class="fw-lighter" style="font-size: 14px; opacity: 0.6">by Jennifer Kreiner</div>
+        </div>
     </div>
 </nav>
+
 
 
 <!-- Validation-->
@@ -67,9 +70,11 @@
     </form>
 </div>
 
-<!--Val. fails image-->
+<!--Val. fails images-->
 <img src="../pictures/401.jpg" id="errorImage"
      style="display: block; position: absolute; z-index: 9999; width: 70%; height: 110%; margin-left: 300px; margin-right: 300px;margin-top: 100px; border: 10px outset #F0B27A"/>
+<img src="../pictures/angry_cat.jpeg" id="angrycat"
+     style="display: none; position: absolute; z-index: 9999; width: 70%; height: 110%; margin-left: 300px; margin-right: 300px;margin-top: 100px; border: 10px outset #F0B27A"/>
 
 <!-- unterer bereich-->
 <div class="container mb-2 mt-2">

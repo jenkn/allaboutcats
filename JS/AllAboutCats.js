@@ -3,8 +3,6 @@ let factbutton = document.getElementById('buttonFact')
 let pictureButton = document.getElementById('pictureBtn')
 
 
-
-
 //Fact
 function addCatFact() {
     console.log("click")
@@ -28,36 +26,36 @@ factbutton.addEventListener('click', addCatFact)
 //Picture
 function addCatPicture() {
 
-  fetch('https://api.thecatapi.com/v1/images/search')
-    .then(response => response.json())
-    .then(data => {
-      const imageUrl = data[0].url;
-      const cardBody = document.getElementById('randomPicInput');
-      cardBody.innerHTML = "";
-      // Remove any existing image element
-      const existingImage = cardBody.querySelector('img');
-      if (existingImage) {
-        existingImage.remove();
-      }
+    fetch('https://api.thecatapi.com/v1/images/search')
+        .then(response => response.json())
+        .then(data => {
+            const imageUrl = data[0].url;
+            const cardBody = document.getElementById('randomPicInput');
+            cardBody.innerHTML = "";
+            // Remove any existing image element
+            const existingImage = cardBody.querySelector('img');
+            if (existingImage) {
+                existingImage.remove();
+            }
 
-      // Create a new image element and set the source
-      const image = document.createElement('img');
-      image.src = imageUrl;
-      image.style.width = '500px';
-      image.style.height = '450px'
-       image.style.display = 'block';
-      image.style.margin = 'auto';
+            // Create a new image element and set the source
+            const image = document.createElement('img');
+            image.src = imageUrl;
+            image.style.width = '500px';
+            image.style.height = '450px'
+            image.style.display = 'block';
+            image.style.margin = 'auto';
 
-      // Append the image to the card body
-      cardBody.appendChild(image);
-    })
-    .catch(error => {
-      console.log('Error:', error);
-    });
+            // Append the image to the card body
+            cardBody.appendChild(image);
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
 
 }
-pictureButton.addEventListener('click',addCatPicture)
 
+pictureButton.addEventListener('click', addCatPicture)
 
 
 //validation
@@ -65,20 +63,24 @@ function formhandler(evt) {
     evt.preventDefault();
     let errorImage = document.getElementById('errorImage');
     let inputValue = input.value.toUpperCase();
+    let angryCat = document.getElementById('angrycat');
 
     console.log(inputValue)
 
     if (inputValue === "YES" || inputValue.includes("LOVE") && inputValue.includes("CATS")) {
         console.log(true)
         errorImage.style.display = 'none';
+        angryCat.style.display = 'none';
         input.classList.remove('is-invalid');
         input.classList.add('was-validated');
     } else {
         input.classList.add('is-invalid');
         input.classList.remove('was-validated');
-        errorImage.style.display = 'block';
-        errorImage.style.position = 'absolute';
-        errorImage.style.zIndex = '9999';
+        errorImage.style.display = 'none';
+        angryCat.style.display = 'block';
+        angryCat.style.position = 'absolute';
+        angryCat.style.zIndex = '9999';
+
 
     }
 

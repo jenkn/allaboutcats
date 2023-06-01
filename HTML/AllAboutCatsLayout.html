@@ -15,31 +15,43 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
 
+
+    <!-- Background-->
+    <style>
+        body {
+            background-image: url("../pictures/wallpapere.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+
 </head>
 
 <body>
 
 
 <!-- Überschrift-->
-<nav class="navbar navbar-expand-lg mb-4" style="background-color: lightyellow">
+<nav class="navbar text-center mb-5 rounded-3 ms-3 me-3 shadow mt-3" style="background-color: #FDEBD0; border-bottom: 5px solid #F0B27A">
     <div class="container justify-content-center">
-        <a class="navbar-brand fw-bold fs-2" style="color: chocolate" href="#">
+        <a class="navbar-brand fw-bold" style="color: #DC7633 ; font-size: 65px;font-style: italic" href="#">
             It`s all about CATS
             <img src="../pictures/catface.png" height="60px" width="65px"/>
         </a>
+        <div class="fw-lighter"> by Jennifer Kreiner</div>
     </div>
 </nav>
 
 
 <!-- Validation-->
-<div class="container" style="background-color: lightyellow; border: 1px solid white; border-radius: 10px;">
+<div class="container mt-4" style="background-color: lightyellow; border: 5px solid #F0B27A; border-radius: 10px; max-width: 78%">
 
-    <form class="d-flex needs-validation" id="form" novalidate>
+    <form class="d-flex needs-validation text-center" id="form" novalidate>
 
 
-        <div class="row justify-content-center mb-1 mt-1 ">
+        <div class="row  justify-content-center mb-1 mt-1 " style="margin-right: auto; margin-left: auto;">
             <div class=" col-auto">
-                <label class="col-form-label">Do you like Cats?</label>
+                <label class="col-form-label fs-5" style="font-style: italic">Do you like Cats?</label>
             </div>
             <div class="col-auto">
                 <div class="form-check">
@@ -50,28 +62,26 @@
 
                 </div>
             </div>
-            <!--            <div class="col-auto">-->
-            <!--            </div>-->
 
         </div>
     </form>
 </div>
 
 <!--Val. fails image-->
-<img src="../pictures/no access.jpg" id="errorImage"
-     style="display: block; position: absolute; z-index: 9999; width: 70%; height: 100%; margin-left: 300px"/>
+<img src="../pictures/401.jpg" id="errorImage"
+     style="display: block; position: absolute; z-index: 9999; width: 70%; height: 110%; margin-left: 300px; margin-right: 300px;margin-top: 100px; border: 10px outset #F0B27A"/>
 
 <!-- unterer bereich-->
-<div class="container-fluid mt-4 mb-4">
+<div class="container mb-2 mt-2">
     <div class="row g-5 justify-content-center">
 
         <!-- Search a Breed-->
 
         <div class="col-5 justify-content-center">
 
-            <div class="card " id="sBreed" style=" background-color:lightyellow; border: 5px solid darkorange; ">
+            <div class="card " id="sBreed" style=" background-color:lightyellow; border: 5px solid #F0B27A; ">
 
-                    <v-app style="height: 850px; background-color: lightyellow">
+                <v-app style="height: 850px; background-color: lightyellow">
 
                     <div class="container-fluid mt-3 mb-auto">
 
@@ -88,55 +98,54 @@
                         </d-flex>
 
 
+                        <div class="card">
 
-                            <div class="card">
-
-                                <!--pictures-->
-                                <v-carousel>
-                                    <v-carousel-item
-                                            v-for="(item,i) in images"
-                                            :key="i"
-                                            :src="item.url"
-                                    ></v-carousel-item>
-                                </v-carousel>
+                            <!--pictures-->
+                            <v-carousel>
+                                <v-carousel-item
+                                        v-for="(item,i) in images"
+                                        :key="i"
+                                        :src="item.url"
+                                ></v-carousel-item>
+                            </v-carousel>
 
 
-                                <div class="text-sm-center">
+                            <div class="text-sm-center">
 
-                                    <!--Flagge-->
-                                    <v-chip>
-                                        <v-avatar>
-                                            <img :src="country_flag_url" :alt="selected_breed.country_code">
-                                        </v-avatar>
-                                        {{selected_breed.origin}}
-                                    </v-chip>
+                                <!--Flagge-->
+                                <v-chip>
+                                    <v-avatar>
+                                        <img :src="country_flag_url" :alt="selected_breed.country_code">
+                                    </v-avatar>
+                                    {{selected_breed.origin}}
+                                </v-chip>
 
-                                    <!--character-->
-                                    <v-chip v-if="selected_breed.experimental==1">Experimental</v-chip>
-                                    <v-chip v-if="selected_breed.rex==1">Rex</v-chip>
-                                    <v-chip v-if="selected_breed.natural==1">Natural</v-chip>
-                                    <v-chip v-if="selected_breed.rare==1">Rare</v-chip>
-                                    <v-chip v-if="selected_breed.hairless==1">Hairless</v-chip>
-                                    <v-chip v-if="selected_breed.suppressed_tail==1">Suppressed Tail</v-chip>
-                                    <v-chip v-if="selected_breed.short_legs==1">Short Legs</v-chip>
-                                    <v-chip v-if="selected_breed.hypoallergenic==1">Hypoallergenic</v-chip>
-                                </div>
-
-                                <div>
-                                    <h3 class="headline mb-0 m-lg-2">{{selected_breed.name}}</h3>
-                                    <div style="opacity: 75%; margin-left: 10px ">{{selected_breed.description}}</div>
-                                    <div style="margin-left: 30px"><i>{{selected_breed.temperament}}</i></div>
-                                </div>
-
-                                <v-card-actions>
-                                    <v-btn :href="selected_breed.wikipedia_url" target="_blank" flat color="orange">
-                                        Wikipedia
-                                    </v-btn>
-                                </v-card-actions>
-
+                                <!--character-->
+                                <v-chip v-if="selected_breed.experimental==1">Experimental</v-chip>
+                                <v-chip v-if="selected_breed.rex==1">Rex</v-chip>
+                                <v-chip v-if="selected_breed.natural==1">Natural</v-chip>
+                                <v-chip v-if="selected_breed.rare==1">Rare</v-chip>
+                                <v-chip v-if="selected_breed.hairless==1">Hairless</v-chip>
+                                <v-chip v-if="selected_breed.suppressed_tail==1">Suppressed Tail</v-chip>
+                                <v-chip v-if="selected_breed.short_legs==1">Short Legs</v-chip>
+                                <v-chip v-if="selected_breed.hypoallergenic==1">Hypoallergenic</v-chip>
                             </div>
+
+                            <div>
+                                <h3 class="headline mb-0 m-lg-2">{{selected_breed.name}}</h3>
+                                <div style="opacity: 75%; margin-left: 10px ">{{selected_breed.description}}</div>
+                                <div style="margin-left: 30px"><i>{{selected_breed.temperament}}</i></div>
+                            </div>
+
+                            <v-card-actions>
+                                <v-btn :href="selected_breed.wikipedia_url" target="_blank" flat color="orange">
+                                    Wikipedia
+                                </v-btn>
+                            </v-card-actions>
+
                         </div>
-                    </v-app>
+                    </div>
+                </v-app>
 
             </div>
 
@@ -144,32 +153,33 @@
 
 
         <!-- Random site-->
+
         <div class="col-5">
 
 
             <!-- Random Cat Facts-->
-            <div class="card" style="min-height: 30%;  border: 5px solid darkorange">
+            <div class="card" style="min-height: 30%;  border: 5px solid #F0B27A">
                 <div class="card-header" style="background-color:lightyellow;">
                     Random Cat fact
                     <button class="btn" type="click" id="buttonFact">
                         <img src="../pictures/catface.png" alt="" width="45" height="40" class="align-text-top">
                     </button>
                 </div>
-                <div class="card-body " id="catFact">
+                <div class="card-body text-center"style="font-style: italic" id="catFact">
                     Click the Cat
                 </div>
 
             </div>
 
             <!-- Random Cat Picture-->
-            <div class="card mt-3" style="min-height: 70%; border: 5px solid darkorange">
+            <div class="card mt-3" style="min-height: 68%; border: 5px solid #F0B27A">
                 <div class="card-header" style="background-color:lightyellow;">
                     Random Cat picture
                     <button class="btn" type="submit" id="pictureBtn">
                         <img src="../pictures/catface.png" alt="" width="45" height="40" class="align-text-top">
                     </button>
                 </div>
-                <div class="card-body " id="randomPicInput">
+                <div class="card-body text-center" style="font-style: italic" id="randomPicInput">
                     Click the Cat
                 </div>
             </div>
@@ -177,17 +187,17 @@
         </div>
 
         <!-- Help Cats in Need-->
-        <div class="col-10 justify-content-center">
-            <div class="card mt-2 " style="min-height: 50%;  border: 5px solid darkorange">
-                <div class="card-header" style="background-color:lightyellow; font-size: larger">
+        <div class="col-10 justify-content-center mt-3">
+            <div class="card " style="min-height: 50%;  border: 5px solid #F0B27A">
+                <div class="card-header " style="background-color:lightyellow; font-size: larger;">
                     Help Cats in Need
 
                     <img src="../pictures/catface.png" height="40" width="45"/></div>
                 <div class="card-body ">
 
-                    <div class="col mt-3 w-auto">
+                    <div class="col w-auto">
+                        <ul class="list-group ">
 
-                        <ul class="list-group fs-6 ">
                             <a class="list-group-item list-group-item-action" href="https://www.strayz.de/"
                                target="_blank">
                                 Feed your Cat AND help strays
@@ -198,11 +208,9 @@
                                 How can you help the animal welfare in carinthia!
                             </a>
                             <a class="list-group-item list-group-item-action"
-                               href="https://www.katzplatz.at/tiertafel-kaernten/helfer-werden/"
+                               href="https://spenden.vier-pfoten.at/vpat/em202205/?cf=gads_pmax&wbraid=ClIKCQjw1MajBhDaARJBAFnHF-NriRL3VVkM00J9skjPWt9zVllHk1wCarNsHlScOEeqXNeXddLBFAHRtTmEXMRvcEx3Lv_C_jKwkqntjkQaAqZR"
                                target="_blank">
-                                A voluntary and honorary group of people from all regions in Carinthia who wanted to
-                                help animal welfare organizations
-                                and to find a home for cats that are difficult to adopt.
+                                Actual: Donate for animals in Ukraine
                             </a>
 
                         </ul>

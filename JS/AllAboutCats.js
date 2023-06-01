@@ -64,11 +64,11 @@ pictureButton.addEventListener('click',addCatPicture)
 function formhandler(evt) {
     evt.preventDefault();
     let errorImage = document.getElementById('errorImage');
-    let inputValue = input.value;
+    let inputValue = input.value.toUpperCase();
 
     console.log(inputValue)
 
-    if (inputValue === "YES") {
+    if (inputValue === "YES" || inputValue.includes("LOVE") && inputValue.includes("CATS")) {
         console.log(true)
         errorImage.style.display = 'none';
         input.classList.remove('is-invalid');

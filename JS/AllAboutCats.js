@@ -5,10 +5,10 @@ let pictureButton = document.getElementById('pictureBtn')
 
 //Fact
 function addCatFact() {
-    console.log("click")
-    fetch('https://catfact.ninja/fact')
-        .then(response => response.json())
-        .then(data => {
+    console.log("click")                             //check in the console if function is called
+    fetch('https://catfact.ninja/fact')        //GET request to URL
+        .then(response => response.json())          //method on the Promise object to extract the JSON data from the response. It converts the response into a JavaScript object
+        .then(data => {                             //contains the JavaScript object that contains the extracted data.
             const fact = data.fact;
             const factElement = document.getElementById('catFact');
             factElement.innerText = fact;
@@ -29,11 +29,11 @@ function addCatPicture() {
     fetch('https://api.thecatapi.com/v1/images/search')
         .then(response => response.json())
         .then(data => {
-            const imageUrl = data[0].url;
+            const imageUrl = data[0].url;                                   // URL of the random cat image extracted from the data object
             const cardBody = document.getElementById('randomPicInput');
-            cardBody.innerHTML = "";
-            // Remove any existing image element
-            const existingImage = cardBody.querySelector('img');
+            cardBody.innerHTML = "";                                        //flushes the entire contents of the cardBody element
+
+            const existingImage = cardBody.querySelector('img');     // Remove any existing image element
             if (existingImage) {
                 existingImage.remove();
             }

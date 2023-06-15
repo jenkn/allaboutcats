@@ -21,10 +21,6 @@ function addCatFact() {
         });
 }
 
-
-
-
-
 factbutton.addEventListener('click', addCatFact)
 
 //Picture

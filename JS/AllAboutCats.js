@@ -10,7 +10,7 @@ function addCatFact() {
         .then(response => response.json())          //method on the Promise object to extract the JSON data from the response. It converts the response into a JavaScript object
         .then(data => {                             //contains the JavaScript object that contains the extracted data.
             const fact = data.fact;
-            const factElement = document.getElementById('catFact');
+            const factElement = document.getElementById('catFact'); //auserhalb implementieren
             factElement.innerText = fact;
             console.log("fact", fact);
             console.log("data", data)

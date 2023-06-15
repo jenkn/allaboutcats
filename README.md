@@ -15,9 +15,10 @@
 8. Validierung -> done -> if "YES" you have access to the side. Anything else will show a picture in front of everything so you aren't allowed to use the side. You need to write the keyword always. The image is implemented in the 
 if of the functionhandler
 9. Help cats in need link search -> done
-10. Help cats in need impl -> done, listgroup, You click on the short description and you will be guided to the described side 
+10. Help cats in need impl -> done, listgroup, You click on the short description and you will be guided to the described side
 
-![Mockup-1.jpg](pictures%2FMockup-1.jpg)
+
+![](pictures/Mockup-1.jpg)
 
 --APIS--
 + https://api.thecatapi.com/v1/breeds
